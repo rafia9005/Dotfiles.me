@@ -24,6 +24,9 @@ export const metadata: Metadata = {
   authors: [{ name: "Ahmad Rafi'i", url: "https://github.com/rafia9005" }],
   creator: "Ahmad Rafi'i",
   publisher: "Ahmad Rafi'i",
+  verification: {
+    google: "28JnRXZJu_QndcQC_D1rpDYrWUgOq9k2KpM0mCNqEZA",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
