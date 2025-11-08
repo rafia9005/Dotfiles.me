@@ -12,10 +12,10 @@ export function Navbar() {
 
     const menuItems = [
         { label: "home", href: "/" },
-        { label: "about", href: "#about" },
-        { label: "projects", href: "#projects" },
-        { label: "docs", href: "#" },
-        { label: "contact", href: "#" },
+        { label: "about", href: "/#about" },
+        { label: "projects", href: "/#projects" },
+        { label: "blog", href: "/#blog" },
+        { label: "contact", href: "/#contact" },
     ]
 
     return (
@@ -53,7 +53,7 @@ export function Navbar() {
                             <Button variant="ghost" size="sm" className="font-mono text-xs h-8 rounded-full">
                                 linkedin
                             </Button>
-                            <Button size="sm" className="font-mono text-xs h-8 rounded-full">
+                            <Button size="sm" className="font-mono text-xs h-8 rounded-sm">
                                 github
                             </Button>
                         </div>
@@ -90,7 +90,7 @@ export function Navbar() {
                             transition={{ duration: 0.2 }}
                             className="fixed top-24 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-sm z-50 md:hidden"
                         >
-                            <div className="bg-background/95 backdrop-blur-xl border border-border rounded-2xl p-4 shadow-xl">
+                            <div className="bg-background/95 backdrop-blur-xl border border-border rounded-md p-4 shadow-xl">
                                 <div className="space-y-1">
                                     {menuItems.map((item, index) => (
                                         <motion.div
@@ -118,7 +118,7 @@ export function Navbar() {
                                         linkedin
                                     </Button>
                                     <Button
-                                        className="flex-1 font-mono text-xs rounded-full"
+                                        className="flex-1 font-mono text-xs rounded-sm"
                                         onClick={() => setIsOpen(false)}
                                     >
                                         github
