@@ -12,9 +12,10 @@ export function Navbar() {
 
     const menuItems = [
         { label: "home", href: "/" },
+        { label: "about", href: "#" },
         { label: "projects", href: "#" },
         { label: "docs", href: "#" },
-        { label: "about", href: "#" },
+        { label: "contact", href: "#" },
     ]
 
     return (
@@ -32,7 +33,7 @@ export function Navbar() {
                             className="flex items-center gap-2 font-mono text-sm font-bold text-primary whitespace-nowrap"
                         >
                             <Terminal className="w-4 h-4" />
-                            ahmadrafi01
+                            ahmadrafi01._
                         </Link>
 
                         <div className="hidden md:flex items-center gap-6">
@@ -128,8 +129,6 @@ export function Navbar() {
                     </>
                 )}
             </AnimatePresence>
-
-            <div className="pt-24" />
         </>
     )
 }
