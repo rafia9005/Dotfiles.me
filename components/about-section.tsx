@@ -102,9 +102,9 @@ export function AboutSection() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="mb-12"
                 >
+                    <h3 className="text-2xl font-bold text-foreground mb-4">My Setup</h3>
                     <a href="https://github.com/rafia9005/config" target="_blank" rel="noopener noreferrer">
-                        <h3 className="text-2xl font-bold text-foreground mb-4">My Setup</h3>
-                        <div className="relative rounded-lg overflow-hidden border border-border bg-card group h-[400px]">
+                        <div className="relative rounded-lg overflow-hidden border border-border bg-card group aspect-video">
                             <Image
                                 src="/desktop.png"
                                 alt="My Linux Desktop Setup"
@@ -118,11 +118,51 @@ export function AboutSection() {
                                 <p className="text-foreground font-semibold text-lg">Arch Linux + BSPWM</p>
                             </div>
                         </div>
-                        <p className="text-muted-foreground text-sm mt-3 text-center">
-                            My customized Arch Linux setup with BSPWM, Neovim, and custom dotfiles
-                        </p>
-
                     </a>
+                    
+                    {/* Device Specs - Combined */}
+                    <div className="mt-6">
+                        <div className="p-6 rounded-lg border border-border bg-gradient-to-br from-card to-card/50 backdrop-blur">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                                <div className="space-y-1">
+                                    <p className="text-xs text-muted-foreground uppercase tracking-wider">Distro</p>
+                                    <p className="text-sm font-mono font-semibold text-primary">Arch Linux</p>
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-xs text-muted-foreground uppercase tracking-wider">Model</p>
+                                    <p className="text-sm font-mono font-semibold text-foreground">Nitro AN515-43</p>
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-xs text-muted-foreground uppercase tracking-wider">CPU</p>
+                                    <p className="text-sm font-mono font-semibold text-foreground">Ryzen 5 3550H</p>
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-xs text-muted-foreground uppercase tracking-wider">Memory</p>
+                                    <p className="text-sm font-mono font-semibold text-foreground">16.00 GiB</p>
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-xs text-muted-foreground uppercase tracking-wider">GPU 1</p>
+                                    <p className="text-sm font-mono font-semibold text-foreground">Radeon RX 560X</p>
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-xs text-muted-foreground uppercase tracking-wider">GPU 2</p>
+                                    <p className="text-sm font-mono font-semibold text-foreground">Radeon Vega 8</p>
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-xs text-muted-foreground uppercase tracking-wider">WM</p>
+                                    <p className="text-sm font-mono font-semibold text-foreground">BSPWM</p>
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-xs text-muted-foreground uppercase tracking-wider">Font</p>
+                                    <p className="text-sm font-mono font-semibold text-foreground">B612 Mono</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p className="text-muted-foreground text-sm mt-4 text-center">
+                        My customized Arch Linux setup with BSPWM, Neovim, and custom dotfiles
+                    </p>
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
