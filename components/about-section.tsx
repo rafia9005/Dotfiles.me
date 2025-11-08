@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Code2, Rocket, GraduationCap, Briefcase } from "lucide-react"
+import Image from "next/image"
 
 export function AboutSection() {
     const skills = [
@@ -103,11 +104,15 @@ export function AboutSection() {
                 >
                     <a href="https://github.com/rafia9005/config" target="_blank" rel="noopener noreferrer">
                         <h3 className="text-2xl font-bold text-foreground mb-4">My Setup</h3>
-                        <div className="relative rounded-lg overflow-hidden border border-border bg-card group">
-                            <img
+                        <div className="relative rounded-lg overflow-hidden border border-border bg-card group h-[400px]">
+                            <Image
                                 src="/desktop.png"
                                 alt="My Linux Desktop Setup"
-                                className="w-full h-auto transition-transform duration-300 group-hover:scale-105"
+                                fill
+                                quality={85}
+                                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                sizes="(max-width: 768px) 100vw, 896px"
+                                loading="lazy"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
                                 <p className="text-foreground font-semibold text-lg">Arch Linux + BSPWM</p>
@@ -146,7 +151,6 @@ export function AboutSection() {
                     ))}
                 </div>
 
-                {/* Skills Section */}
                 <motion.div
                     initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
@@ -191,7 +195,6 @@ export function AboutSection() {
                     </div>
                 </motion.div>
 
-                {/* Call to Action */}
                 <motion.div
                     initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}

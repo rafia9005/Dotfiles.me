@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 interface GitHubStats {
   public_repos: number
@@ -36,7 +37,15 @@ export function HeroSection() {
         transition={{ duration: 0.6 }}
         className="relative h-64 sm:h-80 md:h-96 lg:h-[30rem] w-full overflow-hidden bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900"
       >
-        <img src="/banner.gif" alt="Hero banner" className="h-full w-full object-cover opacity-80" />
+        <Image 
+          src="/banner.gif" 
+          alt="Hero banner" 
+          fill
+          priority
+          quality={75}
+          className="object-cover opacity-80"
+          unoptimized 
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/80" />
       </motion.div>
 
@@ -49,11 +58,15 @@ export function HeroSection() {
               transition={{ delay: 0.2, duration: 0.5 }}
               className="-mt-16 flex-shrink-0"
             >
-              <div className="h-32 w-32 rounded-full border-4 border-foreground">
-                <img 
+              <div className="h-32 w-32 rounded-full border-4 border-foreground relative overflow-hidden">
+                <Image 
                   src="/avatar.jpeg" 
                   alt="Profile Avatar" 
-                  className="h-full w-full rounded-full object-cover"
+                  fill
+                  priority
+                  quality={90}
+                  className="object-cover"
+                  sizes="128px"
                 />
               </div>
             </motion.div>
