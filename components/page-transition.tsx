@@ -12,7 +12,6 @@ export default function PageTransition({
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading time - minimum 1.5 seconds to show loading screen
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1500);

@@ -7,7 +7,6 @@ export default function LoadingScreen() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-background">
       <div className="flex flex-col items-center gap-6">
-        {/* Logo Animation */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -26,11 +25,11 @@ export default function LoadingScreen() {
             className="absolute inset-0 rounded-full border-2 border-primary/20 border-t-primary"
           />
           <div className="relative w-20 h-20 flex items-center justify-center bg-card rounded-full border border-border">
-            <Terminal className="w-10 h-10 text-primary" />
+            {/* <Terminal className="w-10 h-10 text-primary" /> */}
+            <img src="/avatar.jpeg" className="rounded-full"/>
           </div>
         </motion.div>
 
-        {/* Loading Text */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
