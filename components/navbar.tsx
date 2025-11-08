@@ -13,7 +13,7 @@ export function Navbar() {
     const menuItems = [
         { label: "home", href: "/" },
         { label: "about", href: "#about" },
-        { label: "projects", href: "#" },
+        { label: "projects", href: "#projects" },
         { label: "docs", href: "#" },
         { label: "contact", href: "#" },
     ]

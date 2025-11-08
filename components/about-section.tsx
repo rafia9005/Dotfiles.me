@@ -37,7 +37,7 @@ export function AboutSection() {
     ]
 
     return (
-        <section className="w-full py-16 px-6">
+        <section className="w-full py-16 px-6" id="about">
             <div className="mx-auto max-w-4xl">
                 <motion.div
                     initial={{ y: 20, opacity: 0 }}
