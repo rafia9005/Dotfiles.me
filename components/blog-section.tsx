@@ -21,7 +21,7 @@ interface BlogSectionProps {
 export function BlogSection({ posts }: BlogSectionProps) {
 
   return (
-    <section className="w-full py-16 px-6">
+    <section className="w-full py-16 px-6" id="blog">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ y: 20, opacity: 0 }}
@@ -49,7 +49,6 @@ export function BlogSection({ posts }: BlogSectionProps) {
             >
               <Link href={`/blog/${post.slug}`}>
                 <div className="group h-full rounded-lg border border-border bg-card overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg">
-                  {/* Thumbnail */}
                   <div className="relative aspect-video overflow-hidden bg-muted">
                     {post.thumbnail ? (
                       <Image

@@ -8,6 +8,7 @@ import { Navbar } from "@/components/navbar";
 import { ProjectSection } from "@/components/project-section";
 import { BlogSection } from "@/components/blog-section";
 import { ContactSection } from "@/components/contact-section";
+import { BackgroundMusic } from "@/components/background-music";
 
 interface BlogPost {
   slug: string;
@@ -57,6 +58,7 @@ export default function Home() {
       <BlogSection posts={latestPosts}/>
       <ContactSection/>
       <Footer/>
+      <BackgroundMusic />
     </>
   );
 }
