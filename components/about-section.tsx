@@ -69,12 +69,6 @@ export function AboutSection() {
                             using technology, and since then, I have consistently expanded my expertise across both frontend and backend stacks.
                         </p>
                         <p className="leading-relaxed">
-                            Currently working at <span className="font-semibold">TeraRush</span>, where I develop and deploy scalable digital
-                            solutions for clients, leveraging modern frameworks and cloud technologies. I collaborate with cross-functional teams
-                            to deliver secure, high-performance web platforms and microservices, while leading technical initiatives focused on
-                            infrastructure optimization.
-                        </p>
-                        <p className="leading-relaxed">
                             Beyond my professional work, I'm actively pursuing my studies in <span className="font-semibold">Computer and Network
                                 Engineering</span> at SMK Negeri 6 Malang (2023-2026), where I'm gaining practical skills and industry-relevant
                             knowledge. I also provide freelance web development services, helping various clients bring their ideas to life
@@ -103,24 +97,39 @@ export function AboutSection() {
                     className="mb-12"
                 >
                     <h3 className="text-2xl font-bold text-foreground mb-4">My Setup</h3>
-                    <a href="https://github.com/rafia9005/config" target="_blank" rel="noopener noreferrer">
-                        <div className="relative rounded-lg overflow-hidden border border-border bg-card group aspect-video">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <a href="https://github.com/rafia9005/config" target="_blank" rel="noopener noreferrer">
+                            <div className="relative rounded-lg overflow-hidden border border-border bg-card aspect-video">
+                                <Image
+                                    src="/desktop.png"
+                                    alt="Arch Linux Desktop Setup"
+                                    fill
+                                    quality={85}
+                                    className="object-cover"
+                                    sizes="(max-width: 768px) 100vw, 896px"
+                                    loading="lazy"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end justify-center pb-6">
+                                    <p className="text-foreground font-semibold text-lg">Arch Linux + BSPWM</p>
+                                </div>
+                            </div>
+                        </a>
+                        <div className="relative rounded-lg overflow-hidden border border-border bg-card aspect-video">
                             <Image
-                                src="/desktop.png"
-                                alt="My Linux Desktop Setup"
+                                src="/setup.jpeg"
+                                alt="My Desk Setup"
                                 fill
                                 quality={85}
-                                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                className="object-cover"
                                 sizes="(max-width: 768px) 100vw, 896px"
                                 loading="lazy"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
-                                <p className="text-foreground font-semibold text-lg">Arch Linux + BSPWM</p>
+                            <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end justify-center pb-6">
+                                <p className="text-foreground font-semibold text-lg">Desk & Devices</p>
                             </div>
                         </div>
-                    </a>
-                    
-                    {/* Device Specs - Combined */}
+                    </div>
+
                     <div className="mt-6">
                         <div className="p-6 rounded-lg border border-border bg-gradient-to-br from-card to-card/50 backdrop-blur">
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -159,7 +168,7 @@ export function AboutSection() {
                             </div>
                         </div>
                     </div>
-                    
+
                     <p className="text-muted-foreground text-sm mt-4 text-center">
                         My customized Arch Linux setup with BSPWM, Neovim, and custom dotfiles
                     </p>
