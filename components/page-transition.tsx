@@ -5,40 +5,40 @@ import { useEffect, useState } from "react";
 import LoadingScreen from "./loading-screen";
 
 export default function PageTransition({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setIsLoading(false);
+		}, 800);
 
-    return () => clearTimeout(timer);
-  }, []);
+		return () => clearTimeout(timer);
+	}, []);
 
-  return (
-    <AnimatePresence mode="wait">
-      {isLoading ? (
-        <motion.div
-          key="loading"
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <LoadingScreen />
-        </motion.div>
-      ) : (
-        <motion.div
-          key="content"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          {children}
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
+	return (
+		<AnimatePresence mode="wait">
+			{isLoading ? (
+				<motion.div
+					key="loading"
+					exit={{ opacity: 0 }}
+					transition={{ duration: 0.3 }}
+				>
+					<LoadingScreen />
+				</motion.div>
+			) : (
+				<motion.div
+					key="content"
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ duration: 0.3 }}
+				>
+					{children}
+				</motion.div>
+			)}
+		</AnimatePresence>
+	);
 }

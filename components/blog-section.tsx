@@ -1,130 +1,142 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Calendar, ArrowRight } from "lucide-react";
+import { useRef } from "react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import { BlogCard } from "./blog-card";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface BlogPost {
-  slug: string;
-  title: string;
-  excerpt: string;
-  date: string;
-  thumbnail: string;
-  tags: string[];
+	slug: string;
+	title: string;
+	excerpt: string;
+	date: string;
+	thumbnail: string;
+	tags: string[];
 }
 
 interface BlogSectionProps {
-  posts: BlogPost[];
+	posts: BlogPost[];
 }
 
 export function BlogSection({ posts }: BlogSectionProps) {
+	const sectionRef = useRef<HTMLElement>(null);
+	const headerRef = useRef<HTMLDivElement>(null);
+	const gridRef = useRef<HTMLDivElement>(null);
+	const linkRef = useRef<HTMLDivElement>(null);
 
-  return (
-    <section className="w-full py-16 px-6" id="blog">
-      <div className="mx-auto max-w-6xl">
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-12 text-center"
-        >
-          <h2 className="text-3xl font-bold text-foreground mb-3">
-            Latest Articles
-          </h2>
-          <p className="text-muted-foreground">
-            Thoughts, tutorials, and insights on web development
-          </p>
-        </motion.div>
+	useGSAP(() => {
+		// Header animation
+		gsap.fromTo(
+			headerRef.current,
+			{ opacity: 0, y: 30 },
+			{
+				opacity: 1,
+				y: 0,
+				duration: 0.6,
+				scrollTrigger: {
+					trigger: headerRef.current,
+					start: "top 85%",
+					toggleActions: "play none none none"
+				}
+			}
+		);
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post, index) => (
-            <motion.div
-              key={post.slug}
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Link href={`/blog/${post.slug}`}>
-                <div className="group h-full rounded-lg border border-border bg-card overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg">
-                  <div className="relative aspect-video overflow-hidden bg-muted">
-                    {post.thumbnail ? (
-                      <Image
-                        src={post.thumbnail}
-                        alt={post.title}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        unoptimized={!post.thumbnail.startsWith('http')}
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-muted text-muted-foreground">
-                        No Image
-                      </div>
-                    )}
-                  </div>
+		// Animate the underline
+		const underline = headerRef.current?.querySelector(".header-underline");
+		if (underline) {
+			gsap.fromTo(
+				underline,
+				{ scaleX: 0, transformOrigin: "left" },
+				{
+					scaleX: 1,
+					duration: 0.6,
+					delay: 0.3,
+					scrollTrigger: {
+						trigger: headerRef.current,
+						start: "top 85%",
+						toggleActions: "play none none none"
+					}
+				}
+			);
+		}
 
-                  <div className="p-6">
-                    <div className="flex flex-wrap gap-2 mb-3">
-                      {post.tags.slice(0, 2).map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary font-mono"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+		// Blog cards staggered animation
+		const blogCards = gridRef.current?.querySelectorAll(".blog-card-wrapper");
+		if (blogCards && blogCards.length > 0) {
+			gsap.fromTo(
+				blogCards,
+				{ opacity: 0, y: 40, scale: 0.95 },
+				{
+					opacity: 1,
+					y: 0,
+					scale: 1,
+					duration: 0.5,
+					stagger: {
+						each: 0.12,
+						from: "start"
+					},
+					ease: "power2.out",
+					scrollTrigger: {
+						trigger: gridRef.current,
+						start: "top 80%",
+						toggleActions: "play none none none"
+					}
+				}
+			);
+		}
 
-                    <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                      {post.title}
-                    </h3>
+		// View all link animation
+		gsap.fromTo(
+			linkRef.current,
+			{ opacity: 0, y: 20 },
+			{
+				opacity: 1,
+				y: 0,
+				duration: 0.5,
+				scrollTrigger: {
+					trigger: linkRef.current,
+					start: "top 90%",
+					toggleActions: "play none none none"
+				}
+			}
+		);
 
-                    <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
-                      {post.excerpt}
-                    </p>
+	}, { scope: sectionRef, dependencies: [posts] });
 
-                                        {/* Meta */}
-                    <div className="flex items-center justify-between text-xs text-muted-foreground pt-4 border-t border-border">
-                      <div className="flex items-center gap-3">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-3 h-3" />
-                          <span>
-                            {new Date(post.date).toLocaleDateString("en-US", {
-                              month: "short",
-                              day: "numeric",
-                              year: "numeric",
-                            })}
-                          </span>
-                        </div>
-                      </div>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
+	return (
+		<section ref={sectionRef} className="py-20 px-6" id="blog">
+			<div className="max-w-6xl mx-auto">
+				{/* Section Header */}
+				<div ref={headerRef} className="mb-12 opacity-0">
+					<h2 className="text-2xl font-bold text-foreground mb-2">Latest Articles</h2>
+					<div className="header-underline w-12 h-1 bg-primary rounded-full" />
+				</div>
 
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-12 text-center"
-        >
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border bg-card hover:border-primary hover:text-primary transition-all duration-300 font-medium"
-          >
-            View All Articles
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </motion.div>
-      </div>
-    </section>
-  );
+				{/* Posts Grid */}
+				<div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+					{posts.map((post, index) => (
+						<div key={post.slug} className="blog-card-wrapper opacity-0">
+							<BlogCard post={post} index={index} />
+						</div>
+					))}
+				</div>
+
+				{/* View All Link */}
+				<div ref={linkRef} className="mt-10 text-center opacity-0">
+					<Link
+						href="/blog"
+						className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+					>
+						View all articles
+						<ArrowRight className="w-4 h-4" />
+					</Link>
+				</div>
+			</div>
+		</section>
+	);
 }

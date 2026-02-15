@@ -1,284 +1,298 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Code2, Rocket, GraduationCap, Briefcase } from "lucide-react"
-import Image from "next/image"
+import { useRef } from "react";
+import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function AboutSection() {
-    const skills = [
-        { category: "Languages", items: ["Go", "TypeScript", "Python", "JavaScript", "PHP"] },
-        { category: "Frontend", items: ["Next.js", "React", "Vue.js", "Svelte", "TailwindCSS"] },
-        { category: "Backend", items: ["NestJS", "Go Fiber", "Laravel", "Express", "Hono"] },
-        { category: "Database", items: ["PostgreSQL", "MongoDB", "MySQL", "Firebase", "Supabase"] },
-        { category: "Tools", items: ["Docker", "Git", "Linux", "Vim", "Jenkins"] },
-    ]
+	const sectionRef = useRef<HTMLElement>(null);
+	const headerRef = useRef<HTMLDivElement>(null);
+	const bioRef = useRef<HTMLDivElement>(null);
+	const setupRef = useRef<HTMLDivElement>(null);
+	const specsRef = useRef<HTMLDivElement>(null);
+	const skillsRef = useRef<HTMLDivElement>(null);
 
-    const highlights = [
-        {
-            icon: Briefcase,
-            title: "Professional Experience",
-            description: "2+ years building scalable web applications for various clients and companies.",
-        },
-        {
-            icon: Code2,
-            title: "Tech Stack",
-            description: "Proficient in modern frameworks and cloud technologies across full stack development.",
-        },
-        {
-            icon: GraduationCap,
-            title: "Continuous Learning",
-            description: "Currently studying Computer and Network Engineering at SMK Negeri 6 Malang.",
-        },
-        {
-            icon: Rocket,
-            title: "Project Delivery",
-            description: "Successfully delivered numerous projects from concept to production deployment.",
-        },
-    ]
+	const skills = [
+		{ category: "Languages", items: ["Go", "TypeScript", "Python", "JavaScript", "PHP"] },
+		{ category: "Frontend", items: ["Next.js", "React", "Vue.js", "TailwindCSS"] },
+		{ category: "Backend", items: ["NestJS", "Go Fiber", "Laravel", "Express"] },
+		{ category: "Database", items: ["PostgreSQL", "MongoDB", "MySQL", "Redis"] },
+		{ category: "Tools", items: ["Docker", "Git", "Linux", "Vim"] },
+	];
 
-    return (
-        <section className="w-full py-16 px-6" id="about">
-            <div className="mx-auto max-w-4xl">
-                <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="mb-12"
-                >
-                    <h2 className="text-3xl font-bold text-foreground mb-3">
-                        About Me
-                    </h2>
-                    <p className="text-muted-foreground">
-                        Passionate developer focused on creating impactful solutions
-                    </p>
-                </motion.div>
+	useGSAP(() => {
+		// Header animation
+		gsap.fromTo(
+			headerRef.current,
+			{ opacity: 0, y: 30 },
+			{
+				opacity: 1,
+				y: 0,
+				duration: 0.6,
+				scrollTrigger: {
+					trigger: headerRef.current,
+					start: "top 85%",
+					toggleActions: "play none none none"
+				}
+			}
+		);
 
-                <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="mb-12 p-6 rounded-lg border border-border bg-card"
-                >
-                    <div className="space-y-4 text-foreground">
-                        <p className="leading-relaxed">
-                            Hi, I'm <span className="font-semibold text-primary">Ahmad Rafi'i</span>, a dedicated Full Stack Developer
-                            with <span className="font-semibold">2 years of experience</span> building modern, scalable, and responsive
-                            web applications. My journey in web development began with a strong enthusiasm for solving real-world problems
-                            using technology, and since then, I have consistently expanded my expertise across both frontend and backend stacks.
-                        </p>
-                        <p className="leading-relaxed">
-                            Beyond my professional work, I'm actively pursuing my studies in <span className="font-semibold">Computer and Network
-                                Engineering</span> at SMK Negeri 6 Malang (2023-2026), where I'm gaining practical skills and industry-relevant
-                            knowledge. I also provide freelance web development services, helping various clients bring their ideas to life
-                            with tailored solutions.
-                        </p>
-                        <p className="leading-relaxed">
-                            I'm an <span className="font-semibold text-primary">Linux enthusiast</span> 🐧 and daily driver of{" "}
-                            <span className="font-mono text-sm bg-muted px-2 py-0.5 rounded">Arch Linux</span>, where I customize my entire
-                            workflow with tools like <span className="font-mono text-sm">i3wm</span>, <span className="font-mono text-sm">Neovim</span>,
-                            and <span className="font-mono text-sm">tmux</span>. I believe in the power of open-source software and the philosophy
-                            of having complete control over my development environment. My dotfiles are meticulously crafted to maximize productivity
-                            and aesthetic appeal.
-                        </p>
-                        <p className="leading-relaxed">
-                            I'm based in <span className="font-semibold">Malang, East Java, Indonesia</span> 🇮🇩, and I'm passionate about
-                            continuous learning, staying up-to-date with the latest technologies, and contributing to the developer community.
-                        </p>
-                    </div>
-                </motion.div>
+		// Animate the underline separately
+		const underline = headerRef.current?.querySelector(".header-underline");
+		if (underline) {
+			gsap.fromTo(
+				underline,
+				{ scaleX: 0, transformOrigin: "left" },
+				{
+					scaleX: 1,
+					duration: 0.6,
+					delay: 0.3,
+					scrollTrigger: {
+						trigger: headerRef.current,
+						start: "top 85%",
+						toggleActions: "play none none none"
+					}
+				}
+			);
+		}
 
-                <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    className="mb-12"
-                >
-                    <h3 className="text-2xl font-bold text-foreground mb-4">My Setup</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                        <a href="https://github.com/rafia9005/config" target="_blank" rel="noopener noreferrer">
-                            <div className="relative rounded-lg overflow-hidden border border-border bg-card aspect-video">
-                                <Image
-                                    src="/desktop.png"
-                                    alt="Arch Linux Desktop Setup"
-                                    fill
-                                    quality={85}
-                                    className="object-cover"
-                                    sizes="(max-width: 768px) 100vw, 896px"
-                                    loading="lazy"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end justify-center pb-6">
-                                    <p className="text-foreground font-semibold text-lg">Arch Linux + BSPWM</p>
-                                </div>
-                            </div>
-                        </a>
-                        <div className="relative rounded-lg overflow-hidden border border-border bg-card aspect-video">
-                            <Image
-                                src="/setup.jpeg"
-                                alt="My Desk Setup"
-                                fill
-                                quality={85}
-                                className="object-cover"
-                                sizes="(max-width: 768px) 100vw, 896px"
-                                loading="lazy"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end justify-center pb-6">
-                                <p className="text-foreground font-semibold text-lg">Desk & Devices</p>
-                            </div>
-                        </div>
-                    </div>
+		// Bio paragraphs animation
+		const bioParas = bioRef.current?.querySelectorAll("p");
+		if (bioParas) {
+			gsap.fromTo(
+				bioParas,
+				{ opacity: 0, y: 25 },
+				{
+					opacity: 1,
+					y: 0,
+					duration: 0.5,
+					stagger: 0.15,
+					scrollTrigger: {
+						trigger: bioRef.current,
+						start: "top 80%",
+						toggleActions: "play none none none"
+					}
+				}
+			);
+		}
 
-                    <div className="mt-6">
-                        <div className="p-6 rounded-lg border border-border bg-gradient-to-br from-card to-card/50 backdrop-blur">
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                                <div className="space-y-1">
-                                    <p className="text-xs text-muted-foreground uppercase tracking-wider">Distro</p>
-                                    <p className="text-sm font-mono font-semibold text-primary">Arch Linux</p>
-                                </div>
-                                <div className="space-y-1">
-                                    <p className="text-xs text-muted-foreground uppercase tracking-wider">Model</p>
-                                    <p className="text-sm font-mono font-semibold text-foreground">Nitro AN515-43</p>
-                                </div>
-                                <div className="space-y-1">
-                                    <p className="text-xs text-muted-foreground uppercase tracking-wider">CPU</p>
-                                    <p className="text-sm font-mono font-semibold text-foreground">Ryzen 5 3550H</p>
-                                </div>
-                                <div className="space-y-1">
-                                    <p className="text-xs text-muted-foreground uppercase tracking-wider">Memory</p>
-                                    <p className="text-sm font-mono font-semibold text-foreground">16.00 GiB</p>
-                                </div>
-                                <div className="space-y-1">
-                                    <p className="text-xs text-muted-foreground uppercase tracking-wider">GPU 1</p>
-                                    <p className="text-sm font-mono font-semibold text-foreground">Radeon RX 560X</p>
-                                </div>
-                                <div className="space-y-1">
-                                    <p className="text-xs text-muted-foreground uppercase tracking-wider">GPU 2</p>
-                                    <p className="text-sm font-mono font-semibold text-foreground">Radeon Vega 8</p>
-                                </div>
-                                <div className="space-y-1">
-                                    <p className="text-xs text-muted-foreground uppercase tracking-wider">WM</p>
-                                    <p className="text-sm font-mono font-semibold text-foreground">BSPWM</p>
-                                </div>
-                                <div className="space-y-1">
-                                    <p className="text-xs text-muted-foreground uppercase tracking-wider">Font</p>
-                                    <p className="text-sm font-mono font-semibold text-foreground">B612 Mono</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+		// Setup images animation with parallax
+		const setupImages = setupRef.current?.querySelectorAll(".setup-image");
+		if (setupImages) {
+			gsap.fromTo(
+				setupImages,
+				{ opacity: 0, y: 40, scale: 0.95 },
+				{
+					opacity: 1,
+					y: 0,
+					scale: 1,
+					duration: 0.8,
+					stagger: 0.2,
+					ease: "power3.out",
+					scrollTrigger: {
+						trigger: setupRef.current,
+						start: "top 80%",
+						toggleActions: "play none none none"
+					}
+				}
+			);
+		}
 
-                    <p className="text-muted-foreground text-sm mt-4 text-center">
-                        My customized Arch Linux setup with BSPWM, Neovim, and custom dotfiles
-                    </p>
-                </motion.div>
+		// Specs grid animation
+		const specItems = specsRef.current?.querySelectorAll(".spec-item");
+		if (specItems) {
+			gsap.fromTo(
+				specItems,
+				{ opacity: 0, y: 20 },
+				{
+					opacity: 1,
+					y: 0,
+					duration: 0.4,
+					stagger: 0.08,
+					scrollTrigger: {
+						trigger: specsRef.current,
+						start: "top 80%",
+						toggleActions: "play none none none"
+					}
+				}
+			);
+		}
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-                    {highlights.map((item, index) => (
-                        <motion.div
-                            key={item.title}
-                            initial={{ y: 20, opacity: 0 }}
-                            whileInView={{ y: 0, opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
-                            whileHover={{ scale: 1.02 }}
-                            className="p-6 rounded-lg border border-border bg-card hover:bg-accent/50 transition-colors"
-                        >
-                            <div className="flex items-start gap-4">
-                                <div className="p-2 rounded-lg bg-primary/10">
-                                    <item.icon className="w-5 h-5 text-primary" />
-                                </div>
-                                <div className="flex-1">
-                                    <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
-                                    <p className="text-sm text-muted-foreground leading-relaxed">
-                                        {item.description}
-                                    </p>
-                                </div>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
+		// Skills animation - each category row
+		const skillRows = skillsRef.current?.querySelectorAll(".skill-row");
+		if (skillRows) {
+			skillRows.forEach((row, index) => {
+				gsap.fromTo(
+					row,
+					{ opacity: 0, x: -30 },
+					{
+						opacity: 1,
+						x: 0,
+						duration: 0.5,
+						delay: index * 0.1,
+						scrollTrigger: {
+							trigger: skillsRef.current,
+							start: "top 80%",
+							toggleActions: "play none none none"
+						}
+					}
+				);
 
-                <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="mb-12"
-                >
-                    <h3 className="text-2xl font-bold text-foreground mb-6">Tech Stack</h3>
-                    <div className="space-y-6">
-                        {skills.map((skill, index) => (
-                            <motion.div
-                                key={skill.category}
-                                initial={{ x: -20, opacity: 0 }}
-                                whileInView={{ x: 0, opacity: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1, duration: 0.5 }}
-                            >
-                                <div className="flex flex-col sm:flex-row gap-4">
-                                    <div className="sm:w-32 flex-shrink-0">
-                                        <h4 className="font-mono text-sm font-semibold text-primary">
-                                            {skill.category}
-                                        </h4>
-                                    </div>
-                                    <div className="flex-1 flex flex-wrap gap-2">
-                                        {skill.items.map((item, i) => (
-                                            <motion.span
-                                                key={item}
-                                                initial={{ scale: 0 }}
-                                                whileInView={{ scale: 1 }}
-                                                viewport={{ once: true }}
-                                                transition={{ delay: (index * 0.1) + (i * 0.05), type: "spring" }}
-                                                whileHover={{ scale: 1.05 }}
-                                                className="px-3 py-1 rounded-full text-xs font-mono bg-secondary text-secondary-foreground border border-border hover:border-primary/50 transition-colors cursor-default"
-                                            >
-                                                {item}
-                                            </motion.span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.div>
+				// Animate skill pills within each row
+				const pills = row.querySelectorAll(".skill-pill");
+				gsap.fromTo(
+					pills,
+					{ opacity: 0, scale: 0.8 },
+					{
+						opacity: 1,
+						scale: 1,
+						duration: 0.3,
+						stagger: 0.05,
+						delay: 0.2 + index * 0.1,
+						scrollTrigger: {
+							trigger: skillsRef.current,
+							start: "top 80%",
+							toggleActions: "play none none none"
+						}
+					}
+				);
+			});
+		}
 
-                <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="p-8 rounded-lg border border-border bg-gradient-to-br from-primary/5 to-accent/5 text-center"
-                >
-                    <h3 className="text-xl font-bold text-foreground mb-3">
-                        Let's Work Together
-                    </h3>
-                    <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                        I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
-                    </p>
-                    <div className="flex gap-4 justify-center flex-wrap">
-                        <motion.a
-                            href="mailto:rafia9005@gmail.com"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="px-6 py-2 rounded-full bg-primary text-primary-foreground font-mono text-sm hover:opacity-90 transition-opacity"
-                        >
-                            Get in Touch
-                        </motion.a>
-                        <motion.a
-                            href="https://github.com/rafia9005"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="px-6 py-2 rounded-full border border-border bg-background font-mono text-sm hover:bg-accent transition-colors"
-                        >
-                            View GitHub
-                        </motion.a>
-                    </div>
-                </motion.div>
-            </div>
-        </section>
-    )
+	}, { scope: sectionRef });
+
+	return (
+		<section ref={sectionRef} className="py-20 px-6" id="about">
+			<div className="max-w-4xl mx-auto">
+				{/* Section Header */}
+				<div ref={headerRef} className="mb-12 opacity-0">
+					<h2 className="text-2xl font-bold text-foreground mb-2">About Me</h2>
+					<div className="header-underline w-12 h-1 bg-primary rounded-full" />
+				</div>
+
+				{/* Bio */}
+				<div ref={bioRef} className="mb-12">
+					<div className="space-y-4 text-muted-foreground leading-relaxed">
+						<p className="opacity-0">
+							I'm a <span className="text-foreground font-medium">Full Stack Developer</span> with 
+							2+ years of experience building modern web applications. I specialize in 
+							Go, TypeScript, and cloud technologies.
+						</p>
+						<p className="opacity-0">
+							Currently studying <span className="text-foreground font-medium">Computer and Network Engineering</span> at 
+							SMK Negeri 6 Malang (2023-2026). I'm passionate about open-source software and 
+							use <span className="text-primary font-mono text-sm">Arch Linux</span> as my daily driver.
+						</p>
+						<p className="opacity-0">
+							I enjoy building tools and applications that solve real problems. When I'm not coding, 
+							you'll find me customizing my Linux setup or exploring new technologies.
+						</p>
+					</div>
+				</div>
+
+				{/* Setup Images */}
+				<div ref={setupRef} className="mb-12">
+					<h3 className="text-lg font-semibold text-foreground mb-4">My Setup</h3>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+						<a
+							href="https://github.com/rafia9005/config"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="setup-image opacity-0 group relative aspect-video rounded-lg overflow-hidden border border-border"
+						>
+							<Image
+								src="/desktop.png"
+								alt="Desktop Setup"
+								fill
+								className="object-cover group-hover:scale-105 transition-transform duration-300"
+								sizes="(max-width: 768px) 100vw, 50vw"
+							/>
+							<div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+							<p className="absolute bottom-4 left-4 text-white font-medium">Arch Linux + BSPWM</p>
+						</a>
+						<div className="setup-image opacity-0 relative aspect-video rounded-lg overflow-hidden border border-border">
+							<Image
+								src="/setup.jpg"
+								alt="Desk Setup"
+								fill
+								className="object-cover"
+								sizes="(max-width: 768px) 100vw, 50vw"
+							/>
+							<div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+							<p className="absolute bottom-4 left-4 text-white font-medium">Workspace</p>
+						</div>
+					</div>
+				</div>
+
+				{/* Specs */}
+				<div 
+					ref={specsRef}
+					className="mb-12 p-6 rounded-lg border border-border bg-card"
+				>
+					<div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
+						<div className="spec-item opacity-0">
+							<p className="text-muted-foreground mb-1">Distro</p>
+							<p className="font-mono text-primary">Arch Linux</p>
+						</div>
+						<div className="spec-item opacity-0">
+							<p className="text-muted-foreground mb-1">Laptop</p>
+							<p className="font-mono text-foreground">Acer Nitro 5</p>
+						</div>
+						<div className="spec-item opacity-0">
+							<p className="text-muted-foreground mb-1">CPU</p>
+							<p className="font-mono text-foreground">Ryzen 5 3550H</p>
+						</div>
+						<div className="spec-item opacity-0">
+							<p className="text-muted-foreground mb-1">RAM</p>
+							<p className="font-mono text-foreground">16GB</p>
+						</div>
+						<div className="spec-item opacity-0">
+							<p className="text-muted-foreground mb-1">GPU</p>
+							<p className="font-mono text-foreground">RX 560X</p>
+						</div>
+						<div className="spec-item opacity-0">
+							<p className="text-muted-foreground mb-1">WM</p>
+							<p className="font-mono text-foreground">BSPWM</p>
+						</div>
+						<div className="spec-item opacity-0">
+							<p className="text-muted-foreground mb-1">Editor</p>
+							<p className="font-mono text-foreground">Neovim</p>
+						</div>
+						<div className="spec-item opacity-0">
+							<p className="text-muted-foreground mb-1">Terminal</p>
+							<p className="font-mono text-foreground">Kitty</p>
+						</div>
+					</div>
+				</div>
+
+				{/* Skills */}
+				<div ref={skillsRef}>
+					<h3 className="text-lg font-semibold text-foreground mb-6">Tech Stack</h3>
+					<div className="space-y-4">
+						{skills.map((skill) => (
+							<div key={skill.category} className="skill-row opacity-0 flex flex-col sm:flex-row gap-3">
+								<div className="sm:w-24 flex-shrink-0">
+									<span className="text-sm text-primary font-medium">{skill.category}</span>
+								</div>
+								<div className="flex flex-wrap gap-2">
+									{skill.items.map((item) => (
+										<span
+											key={item}
+											className="skill-pill px-3 py-1 text-xs rounded-full bg-secondary text-secondary-foreground border border-border"
+										>
+											{item}
+										</span>
+									))}
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</section>
+	);
 }
