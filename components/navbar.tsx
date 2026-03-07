@@ -51,7 +51,7 @@ export function Navbar() {
 					className="w-full max-w-4xl"
 				>
 					<div
-						className={`relative rounded-2xl border transition-all duration-300 ${
+						className={`relative rounded-lg border transition-all duration-300 ${
 							scrolled
 								? "bg-background/70 backdrop-blur-xl border-border/50 shadow-lg shadow-black/5"
 								: "bg-background/50 backdrop-blur-md border-border/30"
@@ -64,7 +64,7 @@ export function Navbar() {
 								href="/"
 								className="text-lg font-bold text-foreground hover:text-primary transition-colors"
 							>
-								rafia<span className="text-primary">.</span>
+								ahmadrafi01<span className="text-primary">._</span>
 							</Link>
 
 							{/* Desktop Menu - Centered */}

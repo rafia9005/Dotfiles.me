@@ -43,7 +43,6 @@ export function ContactSection() {
 	];
 
 	useGSAP(() => {
-		// Header animation
 		gsap.fromTo(
 			headerRef.current,
 			{ opacity: 0, y: 30 },
@@ -59,7 +58,6 @@ export function ContactSection() {
 			}
 		);
 
-		// Animate the underline
 		const underline = headerRef.current?.querySelector(".header-underline");
 		if (underline) {
 			gsap.fromTo(
@@ -78,7 +76,6 @@ export function ContactSection() {
 			);
 		}
 
-		// Left column - description
 		const description = leftColRef.current?.querySelector(".contact-description");
 		if (description) {
 			gsap.fromTo(
@@ -97,7 +94,6 @@ export function ContactSection() {
 			);
 		}
 
-		// Contact items stagger
 		const contactItems = leftColRef.current?.querySelectorAll(".contact-item");
 		if (contactItems) {
 			gsap.fromTo(
@@ -118,7 +114,6 @@ export function ContactSection() {
 			);
 		}
 
-		// Social links
 		const socialLinks = leftColRef.current?.querySelectorAll(".social-link");
 		if (socialLinks) {
 			gsap.fromTo(
@@ -140,13 +135,18 @@ export function ContactSection() {
 			);
 		}
 
-		// Right column - CTA card with float effect
 		gsap.fromTo(
 			rightColRef.current,
-			{ opacity: 0, x: 50, scale: 0.95 },
+			{ 
+				opacity: 0, 
+				x: window.innerWidth < 768 ? 0 : 50, 
+				y: window.innerWidth < 768 ? 30 : 0, 
+				scale: 0.95 
+			},
 			{
 				opacity: 1,
 				x: 0,
+				y: 0,
 				scale: 1,
 				duration: 0.8,
 				ease: "power3.out",
@@ -158,7 +158,6 @@ export function ContactSection() {
 			}
 		);
 
-		// CTA card inner elements
 		const ctaTags = rightColRef.current?.querySelectorAll(".cta-tag");
 		if (ctaTags) {
 			gsap.fromTo(
@@ -182,19 +181,17 @@ export function ContactSection() {
 	}, { scope: sectionRef });
 
 	return (
-		<section ref={sectionRef} id="contact" className="py-20 px-6 bg-muted/30">
+		<section ref={sectionRef} id="contact" className="py-20 px-6 bg-muted/30 overflow-hidden">
 			<div className="max-w-4xl mx-auto">
-				{/* Section Header */}
 				<div ref={headerRef} className="mb-12 opacity-0">
 					<h2 className="text-2xl font-bold text-foreground mb-2">Get In Touch</h2>
 					<div className="header-underline w-12 h-1 bg-primary rounded-full" />
 				</div>
 
 				<div className="grid md:grid-cols-2 gap-12">
-					{/* Left - Contact Info */}
 					<div ref={leftColRef}>
 						<p className="contact-description opacity-0 text-muted-foreground mb-8 leading-relaxed">
-							I'm always open to discussing new projects, creative ideas, or 
+							I'm always open to discussing new projects, creative ideas, or 
 							opportunities. Feel free to reach out through any of these channels.
 						</p>
 
@@ -221,7 +218,6 @@ export function ContactSection() {
 							))}
 						</div>
 
-						{/* Social Links */}
 						<div className="mt-8">
 							<p className="text-sm text-muted-foreground mb-4">Connect with me</p>
 							<div className="flex gap-3">
@@ -240,7 +236,6 @@ export function ContactSection() {
 						</div>
 					</div>
 
-					{/* Right - CTA Card */}
 					<div
 						ref={rightColRef}
 						className="p-6 rounded-lg border border-border bg-card opacity-0"
@@ -249,7 +244,7 @@ export function ContactSection() {
 							Available for Work
 						</h3>
 						<p className="text-sm text-muted-foreground mb-6">
-							Currently open to freelance projects and full-time opportunities. 
+							Currently open to freelance projects and full-time opportunities. 
 							Let's build something great together.
 						</p>
 
