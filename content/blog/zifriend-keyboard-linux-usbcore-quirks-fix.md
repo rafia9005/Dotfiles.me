@@ -1,6 +1,6 @@
 ---
 title: "Fix Zifriend Keyboard Not Working on Linux (ZA63, ZA68, and Others)"
-date: "2025-01-05"
+date: "2025-01-06"
 excerpt: "Having issues with your Zifriend keyboard not working on Linux? Learn how to fix wired mode detection problems using usbcore.quirks on Arch Linux and other distros."
 thumbnail: "/images/zifriend-keyboard-linux-usbcore-quirks-fix.png"
 tags: ["Linux", "Arch", "Keyboard", "Fix", "Hardware"]
