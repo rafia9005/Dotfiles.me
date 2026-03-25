@@ -5,6 +5,7 @@ import { Navbar } from "@/components/navbar";
 import { ProjectSection } from "@/components/project-section";
 import { BlogSection } from "@/components/blog-section";
 import { ContactSection } from "@/components/contact-section";
+import { ExperienceSection } from "@/components/experience-section";
 import { getLatestPosts } from "@/lib/blog";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <AboutSection/>
+      <ExperienceSection/>
       <ProjectSection/>
       <BlogSection posts={latestPosts}/>
       <ContactSection/>
