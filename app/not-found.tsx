@@ -1,11 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Terminal, Home, ArrowLeft, FileQuestion } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
+  const pathname = usePathname(); 
+
   return (
     <div className="min-h-screen flex items-center justify-center px-6 bg-background">
       <div className="w-full max-w-3xl">
@@ -38,7 +41,7 @@ export default function NotFound() {
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <span className="text-primary">$</span>
-                <span>cd /page-not-found</span>
+                <span>cd {pathname}</span>
               </div>
             </div>
 
@@ -52,7 +55,8 @@ export default function NotFound() {
                 <FileQuestion className="w-8 h-8 text-red-500 mt-1" />
                 <div>
                   <p className="text-red-500 font-bold text-2xl mb-2">
-                    bash: cd: /page-not-found: No such file or directory
+                    {/* Pesan error dinamis sesuai direktori yang dicoba diakses */}
+                    bash: cd: {pathname}: No such file or directory
                   </p>
                   <p className="text-muted-foreground">
                     Error 404: The page you're looking for doesn't exist
