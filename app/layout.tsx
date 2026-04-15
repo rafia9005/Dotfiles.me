@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { LenisProvider } from "@/components/lenis-provider";
 import PageTransition from "@/components/page-transition";
 
 export const metadata: Metadata = {
@@ -84,7 +85,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <PageTransition>{children}</PageTransition>
+          <LenisProvider>
+            <PageTransition>{children}</PageTransition>
+          </LenisProvider>
         </ThemeProvider>
       </body>
     </html>
